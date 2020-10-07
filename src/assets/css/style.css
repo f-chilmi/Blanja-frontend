@@ -15,3 +15,265 @@
 .margin-right {
   right: 0;
 }
+
+.themeColor{
+  background-color: #DB3022;
+  border-color: #DB3022;
+  color: #eaeaeb;
+}
+
+.themeColor:hover{
+  background-color: #CA3022;
+  border-color: #CA3022;
+}
+
+.greyColorButton{
+  color: #9b9b9b;
+  border: 1px solid #9B9B9B;
+  background-color: transparent;
+}
+
+.greyColorButton:hover{
+  background-color: transparent;
+  border: 1px solid #DB3022;
+  color: #DB3022;
+}
+
+.greyColorButton:focus-within{
+  background-color: transparent;
+  border: 1px solid #DB3022;
+  color: #DB3022;
+}
+
+h4{
+  font-weight: 500;
+}
+
+.cardTitle{
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.cardPrice{
+  font-weight: 500;
+  font-size: 16px;
+  color: #DB3022;
+}
+
+.cardStore{
+  font-weight: 500;
+  font-size: 12px;
+  color: #9B9B9B;
+}
+
+.newThings{
+  font-weight: 700;
+  font-size: 34px;
+}
+
+.greyText{
+  font-weight: 400;
+  font-size: 12px;
+  color: #9B9B9B;
+}
+
+.borderImage1{
+  border: 1px solid #CC0B04;
+  background-color: #CC0B04;
+  height: 220px;
+}
+
+.borderImage2{
+  border: 1px solid #1C3391;
+  background-color: #1C3391;
+  height: 220px;
+}
+
+.borderImage3{
+  border: 1px solid #F67B02;
+  background-color: #F67B02;
+  height: 220px;
+}
+
+.borderImage4{
+  border: 1px solid #E31F51;
+  background-color: #E31F51;
+  height: 220px;
+}
+
+.borderImage5{
+  border: 1px solid #57CD9E;
+  background-color: #57CD9E;
+  height: 220px;
+}
+
+.next-icon{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 45%;
+  right: 0%;
+}
+
+.divRow{
+  position: relative;
+}
+
+.nextCarousel{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 6%;
+  top: 35%;
+}
+
+.prevCarousel{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 7%;
+  top: 35%;
+  transform: rotate(180deg);
+}
+
+.divImg{
+  position: relative;
+}
+
+.pAbsolute{
+  position: absolute;
+  top: 35%;
+  font-weight: 700;
+  font-size: 38px;
+  color: white;
+}
+
+.search-wrapper{
+  position: relative;
+}
+
+.form-inline .search-wrapper .form-control{
+  width: 507px;
+  border: 1px solid #8E8E93;
+  border-radius: 23px;
+  height: 40px;
+}
+
+.search-wrapper img{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+}
+
+.form-inline button{
+  border: 1px solid #8E8E93;
+  background: #FFFFFF;
+  border-radius: 12px;
+  height: 38px;
+  width: 38px;
+  margin-left: 5px;
+}
+
+.form-inline button img{
+  right: 15px;
+}
+
+.container .auth{
+  width: 20%;
+  
+}
+
+.auth .login{
+  border-radius: 24px;
+  width: 100px;
+  height: 40px;
+  color:white;
+  background: #DB3022;
+  border: 1px solid #DB3022;
+}
+
+.auth .signup{
+  color: #9B9B9B;
+  background: #FFFFFF;
+  border: 1px solid #9B9B9B;
+  border-radius: 24px;
+  width: 100px;
+  height: 40px;
+}
+
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+.menu-wrapper{
+  margin-left: 60px;
+  margin-top: 80px;
+}
+
+.menu-wrapper .user{
+  border: 1px solid #456BF3;
+  border-radius: 24px;
+  background-color: #456BF3;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.menu-wrapper .user img{
+  position: absolute;
+  transform: translate(40%,40%);
+}
+
+.menu-wrapper .map{
+  border: 1px solid #F36F45;
+  border-radius: 24px;
+  background-color: #F36F45;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.menu-wrapper .map img{
+  position: absolute;
+  transform: translate(40%,40%);
+}
+
+.menu-wrapper .clipboard{
+  border: 1px solid #F3456F;
+  border-radius: 24px;
+  background-color: #F3456F;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.menu-wrapper .clipboard img{
+  position: absolute;
+  transform: translate(40%,40%);
+}
+
+.heading-text{
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.subheading-text{
+  color: #8E8E93;
+}
+
+/* .left-form .label{
+  margin-left: auto;
+} */
+
+.save{
+  border-radius: 24px;
+  width: 100px;
+  height: 40px;
+  color:white;
+  background: #DB3022;
+  border: 1px solid #DB3022;
+}
