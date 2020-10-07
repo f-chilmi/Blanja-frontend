@@ -1,0 +1,17 @@
+.header-login .message {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.theme-color {
+  background-color: #DB3022;
+  border: 1px solid #DB3022;
+}
+
+.red-text {
+  color: #DB3022;
+}
+
+.margin-right {
+  right: 0;
+}
