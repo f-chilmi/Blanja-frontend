@@ -11,6 +11,9 @@ import PrivateRoute from './components/PrivateRoute'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
+import Cart from './pages/Cart'
+import Address from './pages/Address'
+import Order from './pages/Order'
 
 export default class App extends Component {
   render() {
@@ -21,6 +24,9 @@ export default class App extends Component {
             <Route path='/login' render={(props) => <Login {...props} /> } />
             <Route path='/' render={(props) => <Home {...props} /> } exact />
             <Route path='/profile' render={(props) => <Profile {...props} /> } />
+            <Route path='/address' render={(props) => <Address {...props} /> } />
+            <Route path='/order' render={(props) => <Order {...props} /> } />
+            <Route path='/bag' render={(props) => <Cart {...props} /> } />
             <PrivateRoute path='/'  >
             </PrivateRoute>
           </Switch>

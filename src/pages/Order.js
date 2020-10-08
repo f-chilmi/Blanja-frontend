@@ -9,6 +9,7 @@ import {
 
 import NavigationBar from '../components/NavigationBar'
 
+import Smile from '../assets/img/orang1.png'
 import Pencil from '../assets/img/pensil.svg'
 import UserLogo from '../assets/img/user 1.svg'
 import Shipping from '../assets/img/map-pin (3) 1.svg'
@@ -41,7 +42,12 @@ class Profile extends Component {
   componentDidMount() {
     this.props.getProfile(this.props.auth.token)
     // console.log(this.props.getProfile(this.props.auth.token))
-  }  
+  }
+
+  // componentDidUpdate() {
+  //   this.props.updateProfile(this.props.auth.token)
+  // }
+  
 
   onChangeText = (e) => {
     this.setState({[e.target.name]: e.target.value})
@@ -73,7 +79,7 @@ class Profile extends Component {
               <div class="user mr-3">
                 <img src={UserLogo} alt='userLogo' />
               </div>
-              <p style={{fontWeight: 600}} >My Account</p>
+              <Link to='/profile' className='text-reset text-decoration-none' > <p className='text-muted '>My Profile</p></Link>
             </div>
             <div className='d-flex flex-row'>
               <div class="map mr-3">
@@ -85,7 +91,7 @@ class Profile extends Component {
               <div class="clipboard mr-3">
                 <img src={Clipboard} alt='clipboard' />
               </div>
-              <Link to='/order' className='text-reset text-decoration-none'> <p className='text-muted '>My Order</p></Link>
+              <p style={{fontWeight: 600}} >My Order</p>
             </div>
           </div>
         </div>
@@ -96,42 +102,7 @@ class Profile extends Component {
             <p className='subheading-text mb-1'>Manage your profile information</p>
             <hr/>
             
-            <Form onSubmit={this.update}>
-            <Row>
-              <div className='col-8 row left-form'>
-                  <Label className='col-5 label mb-4 text-right'>Name</Label>
-                  <Input type='text' name='name' className='col-7 mb-3' value={data.name} onChange={this.onChangeText}/>
-                  <Label className='col-5 label mb-4 text-right '>Email</Label>
-                  <Input className='col-7 mb-3' value={data.email}></Input>
-                  <Label className='col-5 label mb-4 text-right ' >Phone number</Label>
-                  <Input className='col-7 mb-3' value={data.phone}></Input>
-                  <Label className='col-5 label mb-4 text-right '>Gender</Label>
-                    <Label check className='col-3 mb-4'>
-                      <Input type="radio" name="radio2" value='male' />{' '}
-                        Laki-laki
-                      </Label>
-                    <Label check className='col-3 mb-4'>
-                      <Input type="radio" name="radio2" value='female' />{' '}
-                      Perempuan
-                    </Label>
-                  <Label className='col-5 label mb-4 text-right '>Date of birth</Label>
-                  <Input className='col-7 mb-3'
-                    type="date"
-                    name="date"
-                    id="exampleDate"
-                    placeholder="date placeholder"
-                    value={data.birth}
-                  />
-
-                  <Button className='save mx-auto mt-2'>Save</Button>
-              </div>
-              <hr style={{width: 1, height: 300}} color= '#848494'/>
-              <div className='col-4 d-flex flex-column'>
-                <img src={data.urlPicture} alt='smile' style={{width: 120, height: 120}} />
-                <Link> <Button className='greyColorButton mx-auto mt-2 rounded-pill'>Select Image</Button></Link>
-              </div>
-            </Row>
-            </Form>
+            
           </Card>
         </Jumbotron>
       </Row>
