@@ -2,12 +2,9 @@ import React, { Component } from 'react'
 import {Form, Input, Label, Button, Alert} from 'reactstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import qs from 'querystring'
 
 import store from '../redux/store'
 import auth from '../redux/actions/auth'
-
-import tokenAction from '../redux/actions/auth'
 
 // import image
 import Logo from '../assets/img/logo.svg'
@@ -15,31 +12,52 @@ import Logo from '../assets/img/logo.svg'
 class Login extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    buttonSeller: false,
+    buttonCust: true
   }
 
   login = (e) => {
     e.preventDefault()
     const { email, password } = this.state
-    const data = qs.stringify({
+    const data = {
       email,
       password
-    })
+    }
+    // this.props.login(data)
     store.dispatch(auth.login(data))
-    this.props.history.push('/')
+    // this.props.history.push('/')
+  }
+
+  toggleButton = (val) => {
+    if(val==='seller'){
+      this.setState({
+        buttonCust: false,
+        buttonSeller: true
+      })
+    } else if(val==='customer') {
+      this.setState({
+        buttonCust: true,
+        buttonSeller: false
+      })
+    }
   }
 
   onChangeText = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  componentDidMount() {
-    this.props.getToken()
+  componentDidUpdate(){
+    console.log(this.props.auth)
+    if(this.props.auth.isLogin){
+      console.log('ok')
+      this.props.history.push('/profile')
+    }
   }
   
 
   render() {
-    console.log(this.props)
+    // console.log(this.props.match.path)
     return (
       <div className='vh-100 d-flex justify-content-center align-items-center'>
         <div style={{width: 400}}>
@@ -48,9 +66,10 @@ class Login extends Component {
             <div className='message mb-4'>
               <span>Please login with your account</span>
             </div>
-            <div style={{width: 200}} className='btn-group mb-4 text-center'>
-              <Button style={{width: 120}}>Customer</Button>
-              <Button style={{width: 120}}>Seller</Button>
+            <div style={{width: 200}} className='btn-group button-wrap mb-4 text-center'>
+              <Button color='danger' onClick={()=>this.toggleButton('customer')} active={this.state.buttonCust} className='greyColorButton' style={{width: 120}}>Customer</Button>
+              <Button color='danger' onClick={()=>this.toggleButton('seller')} active={this.state.buttonSeller} className='greyColorButton' style={{width: 120}}>Seller</Button>
+              
             </div>
           </div>
           <Form onSubmit={this.login}>
@@ -71,7 +90,7 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = {
-  getToken: tokenAction.login
+  login: auth.login
 }
 
 const mapStateToProps = state => ({auth: state.auth})

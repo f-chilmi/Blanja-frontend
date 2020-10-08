@@ -277,3 +277,15 @@ h4{
   background: #DB3022;
   border: 1px solid #DB3022;
 }
+
+.greyColorButton{
+  color: #DB3022;
+  border: 1px solid #DB3022;
+  background-color: transparent;
+}
+
+.greyColorButton:hover{
+  background-color: transparent;
+  border: 1px solid #DB3022;
+  color: #DB3022;
+}

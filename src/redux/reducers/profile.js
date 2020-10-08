@@ -1,33 +1,33 @@
 const initialState = {
+  data: {},
   isLogin: false,
+  isLoading: false,
   isError: false,
-  errorMsg: '',
-  token: ''
+  alertMsg: ''
 }
 
-export default (state = initialState, action) => {
+export default (state=initialState, action)=>{
   switch(action.type){
-    case 'AUTH_USER_PENDING' : {
+    case 'GET_PROFILE_PENDING' : {
       return {
         ...state,
         isLoading: true
       }
     }
-    case 'AUTH_USER_REJECTED': {
+    case 'GET_PROFILE_REJECTED': {
       return {
         ...state,
         isLoading: false,
         isError: true,
-        alertMsg: 'Wrong email or password'
+        alertMsg: 'There is an error at request data'
       }
     }
-    case 'AUTH_USER_FULFILLED': {
+    case 'GET_PROFILE_FULFILLED': {
       return {
         ...state,
         isLoading: false,
         isLogin: true,
-        token: action.payload.data.token
-        // data: action.payload.data
+        data: action.payload.data.data[0]
       }
     }
     default : {
