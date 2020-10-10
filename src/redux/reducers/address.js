@@ -30,6 +30,28 @@ export default (state=initialState, action)=>{
         data: action.payload.data.data
       }
     }
+    case 'ADD_ADDRESS_PENDING' : {
+      return {
+        ...state,
+        isLoading: true
+      }
+    }
+    case 'ADD_ADDRESS_REJECTED': {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        alertMsg: 'There is an error at request data'
+      }
+    }
+    case 'ADD_ADDRESS_FULFILLED': {
+      return {
+        ...state,
+        isLoading: false,
+        isLogin: true
+        // data: action.payload.data.data
+      }
+    }
     default : {
       return state
     }

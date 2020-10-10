@@ -16,29 +16,67 @@ import Shipping from '../assets/img/map-pin (3) 1.svg'
 import Clipboard from '../assets/img/clipboard 1.svg'
 
 import store from '../redux/store'
-// import auth from '../redux/actions/auth'
 
 import addressAction from '../redux/actions/address'
 import profileAction from '../redux/actions/profile'
 
 class Address extends Component {
   state = {
-    modal: false
+    modal: false,
+    nameAddress: '',
+    recipientsName: '',
+    address: '',
+    recipientsPhone: '',
+    city: '',
+    postalCode: '',
+    isPrimary: ''
   }
 
   componentDidMount() {
     this.props.getAddress(this.props.auth.token)
-    this.props.getProfile(this.props.auth.token)
+    // this.props.getProfile(this.props.auth.token)
     // console.log(this.props.getProfile(this.props.auth.token))
   }
+
+  // componentDidUpdate(){
+  //   if(this.props.auth.isLogin){
+  //     console.log('ok')
+  //     // this.props.history.push('/profile')
+  //   }
+  // }
 
   onChangeText = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
+
+  addAddress = (e) => {
+    e.preventDefault()
+    const {
+      nameAddress,
+      recipientsName,
+      address,
+      recipientsPhone,
+      city,
+      postalCode,
+      isPrimary
+    } = this.state
+    const data = {
+      nameAddress,
+      recipientsName,
+      address,
+      recipientsPhone,
+      city,
+      postalCode,
+      isPrimary
+    }
+    store.dispatch(addressAction.addAddress(this.props.auth.token, data))
+    this.props.getAddress(this.props.auth.token)
+    this.setState({modal: false})
+  }
   
   render() {
-    // console.log(this.state)
-    // console.log(this.props.profile.data.name)
+    console.log(this.state)
+    // console.log(this.props.auth.token)
     const { data } = this.props.address
     return (
       <>
@@ -103,50 +141,50 @@ class Address extends Component {
         </Jumbotron>
       </Row>
       <Modal isOpen={this.state.modal} >
-        <Form>
-        <ModalHeader className='border-0 ' style={{fontSize: 20, fontWeight: 600}}>Add new address</ModalHeader>
-        <ModalBody>
-          <FormGroup className='row'>
-            <div className='col'>
-              <Label>Save address as (ex:home, office)</Label>
-              <Input type='text' name='nameAddress'/>   
-            </div>
-            <div className='col'>
-              <Label >Recipient's name</Label>
-              <Input type='text' name='recipientsName'/> 
-            </div> 
-          </FormGroup>   
-          <FormGroup className='row'>
-            <div className='col'>
-              <Label>Recipient's phone number</Label>
-              <Input type='text' name='recipientsPhone'/>  
-            </div>    
-            <div className='col'>
-              <Label>Address</Label>  
-              <Input type='text' name='address'/> 
-            </div>
-          </FormGroup>
-          <FormGroup className='row'>
-            <div className='col'>
-              <Label>City or Subdistrict</Label>   
-              <Input type='text' name='city'/>
-            </div>         
-            <div className='col'>
-              <Label>Postal code</Label>    
-              <Input type='text' name='postalCode'/>  
-            </div>        
-          </FormGroup>
-          <FormGroup>
-            <Label check className=''> 
-              <Input type='radio' value='' className='ml-0' />{' '}
-              <span className='ml-4'>Make as primary address</span>
-            </Label> 
-          </FormGroup>
-        </ModalBody>
-        <ModalFooter className='border-0'>
-          <Button className='button-cancel' onClick={()=>this.setState({modal: false})} >Cancel</Button>{' '}
-          <Button className='button-save' >Save</Button>
-        </ModalFooter>
+        <Form onSubmit={this.addAddress}>
+          <ModalHeader className='border-0 ' style={{fontSize: 20, fontWeight: 600}}>Add new address</ModalHeader>
+          <ModalBody>
+            <FormGroup className='row'>
+              <div className='col'>
+                <Label>Save address as (ex:home, office)</Label>
+                <Input type='text' onChange={this.onChangeText} name='nameAddress'/>   
+              </div>
+              <div className='col'>
+                <Label >Recipient's name</Label>
+                <Input type='text' onChange={this.onChangeText} name='recipientsName'/> 
+              </div> 
+            </FormGroup>   
+            <FormGroup className='row'>
+              <div className='col'>
+                <Label>Recipient's phone number</Label>
+                <Input type='text' onChange={this.onChangeText} name='recipientsPhone'/>  
+              </div>    
+              <div className='col'>
+                <Label>Address</Label>  
+                <Input type='text' onChange={this.onChangeText} name='address'/> 
+              </div>
+            </FormGroup>
+            <FormGroup className='row'>
+              <div className='col'>
+                <Label>City or Subdistrict</Label>   
+                <Input type='text' onChange={this.onChangeText} name='city'/>
+              </div>         
+              <div className='col'>
+                <Label>Postal code</Label>    
+                <Input type='text' onChange={this.onChangeText} name='postalCode'/>  
+              </div>        
+            </FormGroup>
+            <FormGroup>
+              <Label check className=''> 
+                <Input type='radio' value='true' name='isPrimary' onChange={this.onChangeText} className='ml-0' />{' '}
+                <span className='ml-4'>Make as primary address</span>
+              </Label> 
+            </FormGroup>
+          </ModalBody>
+          <ModalFooter className='border-0'>
+            <Button className='button-cancel' onClick={()=>this.setState({modal: false})} >Cancel</Button>{' '}
+            <Button className='button-save' >Save</Button>
+          </ModalFooter>
         </Form>
       </Modal>
       </Container>
@@ -162,8 +200,9 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 const mapDispatchToProps = {
-  getProfile: profileAction.getProfile,
-  getAddress: addressAction.getAddress
+  // getProfile: profileAction.getProfile,
+  getAddress: addressAction.getAddress,
+  addAddress: addressAction.addAddress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Address)
