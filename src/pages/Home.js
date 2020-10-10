@@ -1,23 +1,17 @@
 import React from 'react'
-import {default as axios} from 'axios'
-import PropTypes from "prop-types"
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 import homeAction from '../redux/actions/home'
 
 import {
   Row, Col,
-  Jumbotron, Container, 
+  Container, 
   Card, CardBody, CardTitle, CardSubtitle, CardImg, CardText,
-  Table,
-  Button, ButtonGroup,
-  Form, FormGroup, Label, Input,
-  UncontrolledButtonDropdown, DropdownMenu, DropdownItem, DropdownToggle,
-  Pagination
+  
 } from 'reactstrap'
 
 // importing image
-import Suit from '../assets/img/suit1.png'
 import Star from '../assets/img/activated.png'
 import TShirt from '../assets/img/kaos.png'
 import Shorts from '../assets/img/celanapendek.png'
@@ -37,11 +31,14 @@ import NavigationBar2 from '../components/NavigationBar2'
 class Home extends React.Component{
   componentDidMount() {
     this.props.getHome()
-    console.log(this.props.getHome())
   }
+  // componentDidUpdate() {
+  //   this.props.getHome()    
+  // }
+  
   render(){
-    console.log(this.props)
-    console.log(this.props.home)
+    // console.log(this.props)
+    // console.log(this.props.home)
     const {isLoading, data, isError, alertMsg} = this.props.home
     return(
     <>
@@ -99,7 +96,9 @@ class Home extends React.Component{
             <Card className="shadow border-0 mb-3">
               <CardImg src={item.picture1} alt="suit.png" />
               <CardBody>
-                <CardTitle className="cardTitle"> {item.name} </CardTitle>
+                <Link to={`/page-product/${item.id}`} className='text-decoration-none'>
+                  <CardTitle className="cardTitle"> {item.name} </CardTitle>
+                </Link>
                 <CardSubtitle className="cardPrice">Rp {item.price}</CardSubtitle>
                 <CardText className="cardStore mb-0">Zalora Cloth</CardText>
                 <div className="">

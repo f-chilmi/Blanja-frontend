@@ -14,6 +14,7 @@ import Profile from './pages/Profile'
 import Cart from './pages/Cart'
 import Address from './pages/Address'
 import Order from './pages/Order'
+import PageProduct from './pages/PageProduct'
 
 export default class App extends Component {
   render() {
@@ -23,6 +24,7 @@ export default class App extends Component {
           <Switch>
             <Route path='/login' render={(props) => <Login {...props} /> } />
             <Route path='/' render={(props) => <Home {...props} /> } exact />
+            <Route path='/page-product/:id' render={(props) => <PageProduct {...props} /> } exact />
             <Route path='/profile' render={(props) => <Profile {...props} /> } />
             <Route path='/address' render={(props) => <Address {...props} /> } />
             <Route path='/order' render={(props) => <Order {...props} /> } />

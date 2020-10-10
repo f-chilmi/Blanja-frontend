@@ -374,3 +374,180 @@ h4{
   border: 3px solid #DB3022;
   color: #FFFFFF;
 }
+
+.menu-category p .menu-link{
+  color: #9B9B9B;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.name-detil .nama-produk{
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.name-detil .merk{
+  font-size: 16p;
+  font-weight: 500px;
+  color: #9B9B9B;
+}
+.name-detil .star{
+  font-size: 12px;
+  color: #9B9B9B;
+}
+
+.name-detil .star img{
+  width: 18px;
+  height: 18px;
+}
+
+.name-detil .price-text{
+  font-size: 16px;
+  font-weight: 500;
+  color: #9B9B9B;
+}
+
+.name-detil .price{
+  font-size: 33px;
+  font-weight: 600;
+}
+
+.amount-wrapper .add-min-size .min{
+  border: 1px solid #D4D4D4;
+  background-color: #D4D4D4;
+  border-radius: 50px;
+  height: 36px;
+  width: 36px;
+  position: relative;
+}
+
+.amount-wrapper .add-min-size .min img{
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 16px;
+}
+
+.amount-wrapper .add-min-size p{
+  margin-bottom: 0px;
+  margin-top: 7px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.amount-wrapper .add-min-size .plus{
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(142, 142, 142, 0.25);
+  border: 1px solid #D4D4D4;
+  border-radius: 50px;
+  height: 36px;
+  width: 36px;
+  position: relative;
+}
+
+.amount-wrapper .add-min-size .plus img{
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.amount-wrapper p{
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.button .login{
+  border-radius: 24px;
+  width: 400px;
+  height: 40px;
+  color:white;
+  background: #DB3022;
+  border: 1px solid #DB3022;
+}
+.button .signup{
+  color: #9B9B9B;
+  background: #FFFFFF;
+  border: 1px solid #9B9B9B;
+  border-radius: 24px;
+  width: 184px;
+  height: 40px;
+}
+
+.tengah .informasi-text{
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.tengah .cond-text{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+.tengah .new-text{
+  font-size: 20px;
+  font-size: 500;
+  color: #DB3022;
+}
+
+.tengah .desc-text{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.tengah .p-abu{
+  color: #9B9B9B;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tengah .review-text{
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.tengah .row-1{
+  margin-right: 64px;
+}
+
+.tengah .row-1 .big{
+  font-weight: 500;
+  font-size: 60px;
+}
+
+.tengah .row-1 .big .small-grey{
+  font-size: 20px;
+  color: #9B9B9B;
+}
+
+.tengah .row-1 .star img{
+  width: 22px;
+  height: 22px;
+}
+
+.tengah .row-2 p{
+  font-size: 14px;
+  color: #9B9B9B;
+}
+
+.tengah .row-2 img{
+  width: 16px;
+  height: 16px;
+}
+
+.tengah .row-3 hr{
+  width: 120px;
+  border: 3px solid #DB3022;
+  border-radius: 25px;
+  margin-top: 4px;
+}
+
+.tengah .row-4{
+  color: #9B9B9B;
+  font-size: 14px;
+}
+
+hr .vertical-line{
+  width: auto;
+  border: 1px solid #D4D4D4;
+}

@@ -1,11 +1,14 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {
   Container,
   Collapse, Navbar, NavbarToggler, NavbarBrand,
-  Nav, NavLink,
+  Nav,
   Row, Col
 } from 'reactstrap'
 import {Link} from 'react-router-dom'
+
+import profileAction from '../redux/actions/profile'
 
 // Import image
 import Logo from '../assets/img/logo.svg'
@@ -21,7 +24,12 @@ class NavigationBar extends React.Component{
       navbarOpen: false
     }
    }
+   componentDidMount() {
+    this.props.getProfile(this.props.auth.token)
+   }
+   
   render(){
+    console.log(this.props.profile.data.urlPicture)
     return(
       <Navbar color="faded" light expand="md" className="shadow">
           <Container>
@@ -29,11 +37,11 @@ class NavigationBar extends React.Component{
             <NavbarToggler onClick={()=>this.setState({navbarOpen: !this.state.navbarOpen })}/>
             <Collapse isOpen={this.state.navbarOpen} navbar >
               <Nav className="ml-auto">
-                <Row>
+                <Row className='d-flex align-items-center'>
                   <Col><Link to='/bag' className="m-2" > <img src={Cart} alt="cart.svg" /> </Link></Col>
                   <Col><Link to='' className="m-2" to="#"> <img src={Bell} alt="bell.svg" /> </Link></Col>
                   <Col><Link to='' className="m-2" to="#"> <img src={Mail} alt="mail.svg" /> </Link></Col>
-                  <Col><Link to='/profile' className="m-2" > <img src={Smile} alt="person.png" /></Link></Col>
+                  <Col><Link to='/profile' className="m-2" > <img src={this.props.profile.data.urlPicture} alt="ava" style={{width: 70, height: 70}} /></Link></Col>
                 </Row>
               </Nav>
             </Collapse>
@@ -43,4 +51,12 @@ class NavigationBar extends React.Component{
   }
 }
 
-export default NavigationBar
+const mapStateToProps = state => ({
+  profile: state.profile,
+  auth: state.auth
+})
+const mapDispatchToProps = {
+  getProfile: profileAction.getProfile
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar)

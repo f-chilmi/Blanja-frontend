@@ -48,8 +48,8 @@ class Profile extends Component {
   }
   
   render() {
-    console.log(this.props.profile.data)
-    console.log(this.state)
+    // console.log(this.props.profile.data)
+    // console.log(this.state)
     const { data } = this.props.profile
     return (
       <>
@@ -128,7 +128,8 @@ class Profile extends Component {
               <hr style={{width: 1, height: 300}} color= '#848494'/>
               <div className='col-4 d-flex flex-column'>
                 <img src={data.urlPicture} alt='smile' style={{width: 120, height: 120}} />
-                <Link> <Button className='greyColorButton mx-auto mt-2 rounded-pill'>Select Image</Button></Link>
+                {/* <Input type='file'/>  */}
+                <Link> <Button className='greyColorButton mx-auto mt-2 rounded-pill' >Select Image</Button></Link>
               </div>
             </Row>
             </Form>

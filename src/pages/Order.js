@@ -54,8 +54,8 @@ class Profile extends Component {
   }
   
   render() {
-    console.log(this.props.profile.data)
-    console.log(this.state)
+    // console.log(this.props.profile.data)
+    // console.log(this.state)
     const { data } = this.props.profile
     return (
       <>

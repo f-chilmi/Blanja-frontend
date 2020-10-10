@@ -19,6 +19,7 @@ import store from '../redux/store'
 // import auth from '../redux/actions/auth'
 
 import addressAction from '../redux/actions/address'
+import profileAction from '../redux/actions/profile'
 
 class Address extends Component {
   state = {
@@ -27,6 +28,7 @@ class Address extends Component {
 
   componentDidMount() {
     this.props.getAddress(this.props.auth.token)
+    this.props.getProfile(this.props.auth.token)
     // console.log(this.props.getProfile(this.props.auth.token))
   }
 
@@ -35,8 +37,8 @@ class Address extends Component {
   }
   
   render() {
-    console.log(this.state)
-    console.log(this.props)
+    // console.log(this.state)
+    // console.log(this.props.profile.data.name)
     const { data } = this.props.address
     return (
       <>
@@ -45,9 +47,9 @@ class Address extends Component {
       <Row className='mt-4'>
         <div className='sidenav col-3'>
           <div className='d-flex flex-row justify-content-end'>
-            <img className='rounded-circle'  alt='avatar' style={{width: 70, height: 70}} />
+            <img className='rounded-circle' src={this.props.profile.data.urlPicture}  alt='avatar' style={{width: 70, height: 70}} />
             <div className='mx-3 align-items-center'>
-              <p className='mb-1 mt-2' style={{fontWeight: 600}} className="text-center"> nama</p>
+              <p className='mb-1 mt-2' style={{fontWeight: 600}} className="text-center"> {this.props.profile.data.name}</p>
               <Link className='d-flex flex-row align-items-center text-decoration-none'>
                 <img src={Pencil} alt='pencil' />
                 <p className='mb-0 ml-2 text-muted '>Ubah profil</p>
@@ -155,10 +157,12 @@ class Address extends Component {
 
 
 const mapStateToProps = state => ({
+  profile: state.profile,
   address: state.address,
   auth: state.auth
 })
 const mapDispatchToProps = {
+  getProfile: profileAction.getProfile,
   getAddress: addressAction.getAddress
 }
 
