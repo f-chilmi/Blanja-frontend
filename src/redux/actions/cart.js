@@ -7,5 +7,11 @@ export default {
       type: 'GET_CART',
       payload: http(token).get(`http://localhost:8080/cart`)
     }
+  },
+  postCart: (token, data) => {
+    return {
+      type: 'POST_CART',
+      payload: http(token).post(`http://localhost:8080/cart`, qs.stringify(data))
+    }
   }
 }

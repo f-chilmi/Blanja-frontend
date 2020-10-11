@@ -4,5 +4,11 @@ export default {
   getData: (id)=>({
     type: 'GET_DATA',
     payload: axios.get(`http://localhost:8080/public/items/${id}`)
-  })
+  }),
+  increaseCount: {
+    type: 'INCREASE_COUNTER'
+  },
+  decreaseCount: {
+    type: 'DECREASE_COUNTER'
+  }
 }

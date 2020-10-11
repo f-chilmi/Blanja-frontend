@@ -3,20 +3,17 @@ import {connect} from 'react-redux'
 
 import {Link} from 'react-router-dom'
 import {
-  Row, Col, Jumbotron, Card, Container,
-  Form, Label, Input, Button
+  Row, Jumbotron, Card, Container
 } from 'reactstrap'
 
 import NavigationBar from '../components/NavigationBar'
 
-import Smile from '../assets/img/orang1.png'
 import Pencil from '../assets/img/pensil.svg'
 import UserLogo from '../assets/img/user 1.svg'
 import Shipping from '../assets/img/map-pin (3) 1.svg'
 import Clipboard from '../assets/img/clipboard 1.svg'
 
 import store from '../redux/store'
-import auth from '../redux/actions/auth'
 
 import profileAction from '../redux/actions/profile'
 

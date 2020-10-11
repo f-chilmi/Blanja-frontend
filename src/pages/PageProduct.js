@@ -1,8 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 import productAction from '../redux/actions/page-product'
+import cartAction from '../redux/actions/cart'
+import store from '../redux/store'
 
 import {
   Row,
@@ -21,14 +23,29 @@ import NavigationBar from '../components/NavigationBar'
 import NavigationBar2 from '../components/NavigationBar2'
 
 class PageProduct extends React.Component{
+
+  addToCart = (id, qty) => {
+    const data = {
+      id,
+      qty
+    }
+    if(this.props.auth.isLogin){
+      store.dispatch(cartAction.postCart(this.props.auth.token, data))
+    } else {
+      return <Redirect to={{pathname: '/login', state: {alert: '/Login First!', color: 'danger'}}} />
+    }
+  }
   componentDidMount() {
     const { id } = this.props.match.params
     this.props.getProduct(id)
   }
-  // componentDidUpdate() {
-  //   const { id } = this.props.match.params
-  //   this.props.getProduct(id)   
-  // }
+  componentDidUpdate(){
+    if(this.props.cart.successAdd){
+      console.log('ok')
+      this.props.history.push('/cart')
+    }
+  }
+
   render(){
     console.log(this.props)
     return(
@@ -67,16 +84,16 @@ class PageProduct extends React.Component{
             <p className="price-text mb-0">Price</p>
             <p className="price">Rp {this.props.product.data.price}</p>
 
-            <div class="amount-wrapper mb-4">
+            <div className="amount-wrapper mb-4">
               <p>Jumlah</p>
-              <div class="add-min-size d-flex flex-row">
-                  <div class="min">
+              <div className="add-min-size d-flex flex-row" >
+                  <button className="min" onClick={()=>{store.dispatch(productAction.decreaseCount)}}>
                       <img src={Rectangle} alt="minus" />
-                  </div>
+                  </button>
                   <p>1</p>
-                  <div class="plus">
+                  <button className="plus" onClick={()=>{store.dispatch(productAction.increaseCount)}}>
                       <img src={Shape} alt="plus" />
-                  </div>
+                  </button>
               </div>
             </div>
 
@@ -85,7 +102,7 @@ class PageProduct extends React.Component{
                 <Link><button className="signup">Chat</button></Link> 
                 <button className="signup ml-3">Add bag</button>
               </div>
-              <button className="login">Buy now</button>
+              <button className="login" type='submit' onClick={this.addToCart(this.props.product.data.id, this.props.product.data.quantity)}>Buy now</button>
             </div>
               
           </div>
@@ -100,7 +117,7 @@ class PageProduct extends React.Component{
             <p class="review-text mt-5">Product review</p>
             <div class="d-flex flex-row">
                 <div class="row-1">
-                    <p class="big mb-0">5.0<span class="small-grey">/10</span> </p>
+                    <p class="big mb-0">{!this.props.product.data['AVG(rating)'] ? "0" :this.props.product.data['AVG(rating)']}<span class="small-grey">/10 </span> </p>
                     <p className="star">
                       <img src= {Star}  alt="star" />
                       <img src= {Star}  alt="star" /> 
@@ -163,11 +180,13 @@ class PageProduct extends React.Component{
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  product: state.product
+  product: state.product,
+  cart: state.cart
 })
 
 const mapDispatchToProps = {
-  getProduct: productAction.getData
+  getProduct: productAction.getData,
+  postCart: cartAction.postCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PageProduct)

@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 
 import {Link} from 'react-router-dom'
 import {
-  Row, Col, Jumbotron, Card, Container,
-  Form, Label, Input, Button
+  Row, Card, Container
 } from 'reactstrap'
 
 import NavigationBar from '../components/NavigationBar'

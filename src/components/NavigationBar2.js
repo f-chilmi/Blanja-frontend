@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Container,
   Collapse, Navbar, NavbarToggler, NavbarBrand,
-  Nav, NavLink,
+  Nav,
   Row, Col,
   Form, Input, Button
 } from 'reactstrap'
@@ -37,7 +37,7 @@ class NavigationBar2 extends React.Component{
               </Form>
               <Nav className="ml-auto">
                 <Row>
-                  <Col className='col-2'><Link className="m-2" to="#"> <img src={Cart} alt="cart.svg" /> </Link></Col>
+                  <Col className='col-2'><Link to='/bag' className="m-2" > <img src={Cart} alt="cart.svg" /> </Link></Col>
                   <div className="auth col-10 d-flex flex-row">
                     <Link to='/login'><button className="login">Login</button></Link> 
                     <button className="signup ml-3">Signup</button>

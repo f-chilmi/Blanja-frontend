@@ -31,15 +31,15 @@ import NavigationBar2 from '../components/NavigationBar2'
 class Home extends React.Component{
   componentDidMount() {
     this.props.getHome()
+    this.props.getPopular()
   }
   // componentDidUpdate() {
   //   this.props.getHome()    
   // }
   
   render(){
-    // console.log(this.props)
     // console.log(this.props.home)
-    const {isLoading, data, isError, alertMsg} = this.props.home
+    const {isLoading, data, dataPopular, isError, alertMsg} = this.props.home
     return(
     <>
     {this.props.auth.isLogin ? <NavigationBar/> : <NavigationBar2/>}
@@ -87,40 +87,72 @@ class Home extends React.Component{
         <div className="rounded-circle d-flex align-content-center flex-wrap justify-content-center bg-white next-icon my-auto"><a href='#'><img src={Next} alt="next-icon.png"/></a></div>
       </Row>
 
-      <p className="newThings mb-0">New</p>
-      <p className="greyText">You've never seen it before!</p>
-      <Row className="justify-content-between mb-4">
-      {!isLoading && !isError && data.length!==0 && data.map(item=>(
-          
-          <Col className="card-deck col-sm-12 col-md-6 col-lg-3 col-xl-3" >
-            <Card className="shadow border-0 mb-3">
-              <CardImg src={item.picture1} alt="suit.png" />
-              <CardBody>
-                <Link to={`/page-product/${item.id}`} className='text-decoration-none'>
-                  <CardTitle className="cardTitle"> {item.name} </CardTitle>
-                </Link>
-                <CardSubtitle className="cardPrice">Rp {item.price}</CardSubtitle>
-                <CardText className="cardStore mb-0">Zalora Cloth</CardText>
-                <div className="">
-                  <img src={Star} alt="star.png"/>
-                  <img src={Star} alt="star.png"/>
-                  <img src={Star} alt="star.png"/>
-                  <img src={Star} alt="star.png"/>
-                  <img src={Star} alt="star.png"/>
-                  <p className="greyText d-inline"> {item.rating}</p>
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        
-        ))}
+      {!isLoading && !isError && (
+      <div>
+        <div className='category-new'>
+          <p className="newThings mb-0">New</p>
+          <p className="greyText">You've never seen it before!</p>
+          <Row className="justify-content-between mb-4">
+            {data.length!==0 && data.map(item=>(
+              <Col className="card-deck col-sm-12 col-md-6 col-lg-3 col-xl-3" >
+                <Card className="shadow border-0 mb-3">
+                  <CardImg src={item.picture1} alt="suit.png" />
+                  <CardBody>
+                    <Link to={`/page-product/${item.id}`} className='text-decoration-none'>
+                      <CardTitle className="cardTitle"> {item.name} </CardTitle>
+                    </Link>
+                    <CardSubtitle className="cardPrice">Rp {item.price}</CardSubtitle>
+                    <CardText className="cardStore mb-0">Zalora Cloth</CardText>
+                    <div className="">
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <p className="greyText d-inline"> {item.rating}</p>
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+              ))}
+            </Row>
+          </div> 
+          <div className='category-popular'>
+          <p className="newThings mb-0">Popular</p>
+          <p className="greyText">You've never seen it before!</p>
+          <Row className="justify-content-between mb-4">
+            {data.length!==0 && dataPopular.map(item=>(
+              <Col className="card-deck col-sm-12 col-md-6 col-lg-3 col-xl-3" >
+                <Card className="shadow border-0 mb-3">
+                  <CardImg src={item.picture1} alt="suit.png" />
+                  <CardBody>
+                    <Link to={`/page-product/${item.id}`} className='text-decoration-none'>
+                      <CardTitle className="cardTitle"> {item.name} </CardTitle>
+                    </Link>
+                    <CardSubtitle className="cardPrice">Rp {item.price}</CardSubtitle>
+                    <CardText className="cardStore mb-0">Zalora Cloth</CardText>
+                    <div className="">
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <p className="greyText d-inline"> {item.rating}</p>
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+              ))}
+            </Row>
+          </div> 
+        </div>  
+      )}
         {isLoading&& !isError && (
           <div>Loading</div>
         )}
         {isError&& alertMsg!=='' && (
           <div>{alertMsg}</div>
         )}
-        </Row>
       </Container>
       </>
     )
@@ -133,7 +165,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  getHome: homeAction.getData
+  getHome: homeAction.getData,
+  getPopular: homeAction.getPopular
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

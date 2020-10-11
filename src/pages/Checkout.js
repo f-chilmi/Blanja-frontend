@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {
   Row, Card, Container,
   Modal, ModalHeader,
-  Form, Label, Input, Button, ModalFooter, ModalBody
+  Button, ModalFooter, ModalBody
 } from 'reactstrap'
 
 import NavigationBar from '../components/NavigationBar'

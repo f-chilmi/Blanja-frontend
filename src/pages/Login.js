@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Input, Label, Button, Alert} from 'reactstrap'
+import {Form, Input, Button} from 'reactstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
@@ -24,7 +24,6 @@ class Login extends Component {
       email,
       password
     }
-    // this.props.login(data)
     store.dispatch(auth.login(data))
     // this.props.history.push('/')
   }
@@ -51,7 +50,7 @@ class Login extends Component {
     console.log(this.props.auth)
     if(this.props.auth.isLogin){
       console.log('ok')
-      this.props.history.push('/profile')
+      this.props.history.push('/')
     }
   }
   

@@ -431,11 +431,11 @@ h4{
   position: relative;
 }
 
-.amount-wrapper .add-min-size .min img{
+/* .amount-wrapper .add-min-size .min img{
   position: absolute;
   margin-left: 10px;
   margin-top: 16px;
-}
+} */
 
 .amount-wrapper .add-min-size p{
   margin-bottom: 0px;
@@ -454,11 +454,11 @@ h4{
   position: relative;
 }
 
-.amount-wrapper .add-min-size .plus img{
+/* .amount-wrapper .add-min-size .plus img{
   position: absolute;
   margin-left: 10px;
   margin-top: 10px;
-}
+} */
 
 .amount-wrapper p{
   font-size: 16px;
