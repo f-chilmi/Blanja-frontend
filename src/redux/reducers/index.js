@@ -6,6 +6,7 @@ import product from './page-product'
 import profile from './profile'
 import address from './address'
 import cart from './cart'
+import checkout from './checkout'
 
 export default combineReducers({
   auth,
@@ -13,5 +14,6 @@ export default combineReducers({
   product,
   profile,
   address,
-  cart
+  cart,
+  checkout
 })

@@ -29,7 +29,7 @@ class NavigationBar extends React.Component{
    }
    
   render(){
-    console.log(this.props.profile.data.urlPicture)
+    // console.log(this.props.profile.data.urlPicture)
     return(
       <Navbar color="faded" light expand="md" className="shadow">
           <Container>

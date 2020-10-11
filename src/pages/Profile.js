@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import moment from 'moment'
+import Moment from 'react-moment';
 import {connect} from 'react-redux'
 
 import {Link} from 'react-router-dom'
@@ -28,7 +30,8 @@ class Profile extends Component {
     phone: '',
     gender: '',
     urlPicture: '',
-    birth: ''
+    birth: '',
+    dateToFormat: '15-12-1997'
   }
 
   update = (e) => {
@@ -40,17 +43,34 @@ class Profile extends Component {
   }
   componentDidMount() {
     this.props.getProfile(this.props.auth.token)
-    // console.log(this.props.getProfile(this.props.auth.token))
-  }  
+  }
+  
+  componentDidUpdate(){
+    // {this.props.profile.data ? console.log(this.props.profile.data) : console.log('not yet')}
+    if(Object.keys(this.props.profile.data)){
+      const { data } = this.props.profile
+      console.log(this.props.profile.data)
+      // this.setState({
+      //   name: data.name,
+      //   email: data.email,
+      //   phone: data.phone,
+      //   gender: data.gender,
+      //   urlPicture: data.urlPicture,
+      //   birth: data.birth,
+      // })
+    } else {
+      console.log('belum siap')
+    }
+  }
 
   onChangeText = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
   
   render() {
-    // console.log(this.props.profile.data)
-    // console.log(this.state)
+    const { name, email, phone, gender, urlPicture, birth } = this.state
     const { data } = this.props.profile
+    // console.log(this.state)
     return (
       <>
       <NavigationBar/>
@@ -100,7 +120,7 @@ class Profile extends Component {
             <Row>
               <div className='col-8 row left-form'>
                   <Label className='col-5 label mb-4 text-right'>Name</Label>
-                  <Input type='text' name='name' className='col-7 mb-3' value={data.name} onChange={this.onChangeText}/>
+                  <Input type='text' name='name' className='col-7 mb-3' value={this.state.name} onChange={this.onChangeText}/>
                   <Label className='col-5 label mb-4 text-right '>Email</Label>
                   <Input className='col-7 mb-3' value={data.email}></Input>
                   <Label className='col-5 label mb-4 text-right ' >Phone number</Label>
@@ -120,16 +140,18 @@ class Profile extends Component {
                     name="date"
                     id="exampleDate"
                     placeholder="date placeholder"
-                    value={data.birth}
+                    value={<Moment format="YYYY-MM-DD">{data.birth && data.birth.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2")}</Moment>}
                   />
-
+                  {this.state.dateToFormat.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2")}
+                  <Moment format="YYYY-MM-DD">{data.birth && data.birth.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2")}</Moment>
                   <Button className='save mx-auto mt-2'>Save</Button>
               </div>
               <hr style={{width: 1, height: 300}} color= '#848494'/>
               <div className='col-4 d-flex flex-column'>
                 <img src={data.urlPicture} alt='smile' style={{width: 120, height: 120}} />
                 {/* <Input type='file'/>  */}
-                <Link> <Button className='greyColorButton mx-auto mt-2 rounded-pill' >Select Image</Button></Link>
+                <Input type="file" name="urlPicture" />
+                {/* <Link> <Button className='greyColorButton mx-auto mt-2 rounded-pill' >Select Image</Button></Link> */}
               </div>
             </Row>
             </Form>

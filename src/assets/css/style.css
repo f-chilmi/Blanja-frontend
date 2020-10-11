@@ -356,6 +356,15 @@ h4{
   margin-top: 5px;
 }
 
+.greytext-wrapper .harga{
+  font-size: 16px;
+  font-weight: bold;
+  float: right;
+  margin-bottom: 0;
+  color:#848494;
+  margin-top: 5px;
+}
+
 .col-4 .card-3 .card-body h3{
   font-size: 20px;
   margin-bottom: 30px;
@@ -456,7 +465,7 @@ h4{
   font-weight: 600;
 }
 
-.button .login{
+.button .login, .red-button{
   border-radius: 24px;
   width: 400px;
   height: 40px;

@@ -77,7 +77,7 @@ class Cart extends Component {
               <div className="card-body">
                 <h3>Shopping summary</h3>
                 <p>Total price <span className="harga mr-3"> Rp {this.props.cart.data["total price"]} </span> </p>
-                <button>Buy</button>
+                <button> <Link to='/checkout' className='text-decoration-none text-white'> Buy</Link></button>
               </div>
             </Card>
           </div>
@@ -96,7 +96,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 const mapDispatchToProps = {
-  // getProfile: profileAction.getProfile,
   getCart: cartAction.getCart
 }
 

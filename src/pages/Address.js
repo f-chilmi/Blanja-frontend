@@ -34,16 +34,7 @@ class Address extends Component {
 
   componentDidMount() {
     this.props.getAddress(this.props.auth.token)
-    // this.props.getProfile(this.props.auth.token)
-    // console.log(this.props.getProfile(this.props.auth.token))
   }
-
-  // componentDidUpdate(){
-  //   if(this.props.auth.isLogin){
-  //     console.log('ok')
-  //     // this.props.history.push('/profile')
-  //   }
-  // }
 
   onChangeText = (e) => {
     this.setState({[e.target.name]: e.target.value})
@@ -130,7 +121,8 @@ class Address extends Component {
               return (
                 <div className='rounded-lg address-border-list p-3 mb-3' >
                   <p style={{fontWeight: 600}} className='mb-2' > {item.recipientsName} </p>
-                  <p>{item.address}</p>
+                  <p>{item.address}{','} {item.city} {item.postalCode} </p>
+                  <p>{item.recipientsPhone}</p>
                   <Link className='text-decoration-none' style={{color: '#DB3022'}}>Change address</Link>
                 </div>
               )
@@ -142,7 +134,7 @@ class Address extends Component {
       </Row>
       <Modal isOpen={this.state.modal} >
         <Form onSubmit={this.addAddress}>
-          <ModalHeader className='border-0 ' style={{fontSize: 20, fontWeight: 600}}>Add new address</ModalHeader>
+          <ModalHeader className='border-0' style={{fontSize: 20, fontWeight: 600}}>Add new address</ModalHeader>
           <ModalBody>
             <FormGroup className='row'>
               <div className='col'>
