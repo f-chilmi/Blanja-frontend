@@ -12,25 +12,86 @@ import Rectangle from '../assets/img/Rectangle 605.svg'
 import Shape from '../assets/img/Shape1.svg'
 
 import cartAction from '../redux/actions/cart'
+import store from '../redux/store'
 
 class Cart extends Component {
   state = {
+    data: [],
+    totalPrice: ''
   }
 
   componentDidMount() {
     this.props.getCart(this.props.auth.token)
   }
 
+  componentDidUpdate(){
+    if(Object.keys(this.props.cart).length>0){
+      const { data } = this.props.cart
+      if(!this.state.data.length){
+        if(Object.keys(this.props.cart.data).length>0){
+          console.log(data)
+          this.setState({
+            data: data.data,
+            totalPrice: data["total price"]
+          })
+        } else {
+          console.log('menunggu data dari cart')
+        }
+      } else {
+        console.log('updated')
+      }
+      
+    } else {
+      console.log('belum siap')
+    }
+  }
+
   onChangeText = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
+
+  DecreaseItem = (i) => {
+    const {data} = this.state
+    let {totalPrice} = this.state
+    data[i] = {
+      ...this.state.data[i],
+      quantity: this.state.data[i].quantity-1,
+      total: this.state.data[i].price * (this.state.data[i].quantity-1)
+    }
+    totalPrice = totalPrice - (this.state.data[i].price)
+    const itemsId = data[i].items_id
+    const quantity = data[i].quantity
+    const updateQty = {
+      itemsId,
+      quantity
+    }
+    console.log(updateQty)
+    this.setState({data, totalPrice})
+    store.dispatch(cartAction.updateCart(this.props.auth.token, updateQty))
+  }
+
+  IncreaseItem = (i) => {
+    const {data} = this.state
+    let {totalPrice} = this.state
+    data[i] = {
+      ...this.state.data[i],
+      quantity: this.state.data[i].quantity+1,
+      total: this.state.data[i].price * (this.state.data[i].quantity+1)
+    } 
+    totalPrice = totalPrice + (this.state.data[i].price)
+    const itemsId = data[i].items_id
+    const quantity = data[i].quantity
+    const updateQty = {
+      itemsId,
+      quantity
+    }
+    console.log(updateQty)
+    this.setState({data, totalPrice})
+    store.dispatch(cartAction.updateCart(this.props.auth.token, updateQty))
+  }
   
   render() {
-    const { data } = this.props.cart.data
-    console.log(Object.keys(this.props.cart.data).length)
-    // return(
-    //   <div>ini return</div>
-    // )
+    const { data } = this.state
     return (
       <>
       <NavigationBar/>
@@ -47,23 +108,31 @@ class Cart extends Component {
               </div>
             </Card>
 
-            {Object.keys(this.props.cart.data).length && data.map(item=>{
+            {Object.keys(this.state.data).length && data.map((item, index)=>{
               return(
                 <Card className=" card-2 w-100 mb-3 shadow">
                   <div className="card-body second">
-                    <div className="caption d-flex flex-row align-items-center ">
-                      <input type="checkbox" />
-                      <img className="ml-4" alt=""/>
-                      <div className="nama-toko align-items-center ml-3">
+                    <div className="row caption d-flex flex-row align-items-center ">
+                      <div className="col-1">
+                        <input type="checkbox" value="item.id" name="id"/>
+                      </div>
+                      <div className="col-2 p-0">
+                        <img alt="product" src={item.picture1} className='image-product' />
+                      </div>
+                      <div className="col-3 nama-toko align-items-center ml-3">
                         <p className="nama-barang mb-0"> {item.name}</p>
                         <p className="toko mb-1">Zalora Cloth</p>
                       </div>
-                      <div className="ikon-plus-minus d-flex flex-row mr-4">
-                        <button className="minus"><img src={Rectangle} alt=""/></button>
+                      <div className="col-2 ikon-plus-minus d-flex flex-row mr-4">
+                        <button className="minus" name="quantity"  onClick={()=>this.DecreaseItem(index)}>
+                          <img src={Rectangle} alt=""/>
+                        </button>
                         <p className="align-content-center"> {item.quantity} </p>
-                        <button className="plus"><img src={Shape} alt=""/></button>
+                        <button className="plus" name="quantity" onClick={()=>this.IncreaseItem(index)}>
+                          <img src={Shape} alt=""/>
+                        </button>
                       </div>
-                      <p className="harga ml-auto mr-3"> Rp {item.price} </p>                  
+                      <p className="col-2 harga ml-auto mr-3"> Rp {item.total} </p>                  
                   </div>
                 </div>
               </Card>
@@ -75,8 +144,10 @@ class Cart extends Component {
             <Card className='card-3 w-100 shadow'>
               <div className="card-body">
                 <h3>Shopping summary</h3>
-                <p>Total price <span className="harga mr-3"> Rp {this.props.cart.data["total price"]} </span> </p>
-                <button> <Link to='/checkout' className='text-decoration-none text-white'> Buy</Link></button>
+                <p>Total price <span className="harga mr-3"> Rp {this.state.totalPrice} </span> </p>
+                <button > 
+                  <Link to='/checkout' className='text-decoration-none text-white'> Buy</Link>
+                </button>
               </div>
             </Card>
           </div>

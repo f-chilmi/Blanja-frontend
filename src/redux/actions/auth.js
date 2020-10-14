@@ -7,5 +7,12 @@ export default {
     type: 'AUTH_USER',
     payload: http().post('http://localhost:8080/auth/login',qs.stringify(data))
     // payload: axios.post('http://localhost:8080/auth/login', data)
+  }),
+  signup: (data) => ({
+    type: 'SIGNUP',
+    payload: http().post('http://localhost:8080/auth/signup',qs.stringify(data))
+  }),
+  logout: () => ({
+    type: 'LOGOUT'
   })
 }

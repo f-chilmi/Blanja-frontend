@@ -29,7 +29,7 @@ class NavigationBar extends React.Component{
    }
    
   render(){
-    // console.log(this.props.profile.data.urlPicture)
+    // console.log(this.state)
     return(
       <Navbar color="faded" light expand="md" className="shadow">
           <Container>
@@ -41,6 +41,7 @@ class NavigationBar extends React.Component{
                   <Col><Link to='/bag' className="m-2" > <img src={Cart} alt="cart.svg" /> </Link></Col>
                   <Col><Link to='' className="m-2" to="#"> <img src={Bell} alt="bell.svg" /> </Link></Col>
                   <Col><Link to='' className="m-2" to="#"> <img src={Mail} alt="mail.svg" /> </Link></Col>
+                  
                   <Col><Link to='/profile' className="m-2" > <img src={this.props.profile.data.urlPicture} alt="ava" style={{width: 70, height: 70}} /></Link></Col>
                 </Row>
               </Nav>

@@ -5,19 +5,24 @@ import {Link} from 'react-router-dom'
 import {
   Row, Card, Container,
   Modal, ModalHeader,
-  Button, ModalFooter, ModalBody
+  Button, ModalFooter, ModalBody,
+  Form, Input, FormGroup, Label
 } from 'reactstrap'
 
 import NavigationBar from '../components/NavigationBar'
 
 import checkoutAction from '../redux/actions/checkout'
+import addressAction from '../redux/actions/address'
 
 class Checkout extends Component {
   state = {
-    modalOpen: false
+    modalOpen: false,
+    modalAddress: false,
+    modalShowAddress: false
   }
   componentDidMount() {
     this.props.getCheckout(this.props.auth.token)
+    this.props.getAddress(this.props.auth.token)
     this.props.payment(this.props.auth.token)
   }
 
@@ -26,8 +31,8 @@ class Checkout extends Component {
   }
   
   render() {
-    console.log(this.props.checkout.dataPayment)
-    const { checkout } = this.props
+    const { checkout, address } = this.props
+    console.log(address)
     {Object.keys(checkout.data).length>0 ? console.log(checkout.dataPayment) : console.log('no')}
     return (
       <>
@@ -44,7 +49,7 @@ class Checkout extends Component {
                     <p style={{fontWeight: 600}} className='mb-2' > {item.recipientsName} </p>
                     <p>{item.address}{','} {item.city} {item.postalCode} </p>
                     <p>{item.recipientsPhone}</p>
-                    <Button className='signup' style={{width: 250}}> <Link className='text-decoration-none' style={{color: '#DB3022'}}>Choose another address</Link></Button>
+                    <Button className='signup' onClick={()=>this.setState({modalShowAddress: true})} style={{width: 250}}> <Link className='text-decoration-none' style={{color: '#DB3022'}}>Choose another address</Link></Button>
                   </div>
                 </Card>
             )
@@ -106,6 +111,80 @@ class Checkout extends Component {
           <button className='red-button w-25'> <Link className='text-decoration-none text-white'> Buy</Link></button>
         </ModalFooter>
       </Modal>
+
+      <Modal isOpen={this.state.modalShowAddress} >
+        <ModalBody>
+        <p className='heading-text mb-1'>Choose another address</p>
+          <p className='subheading-text mb-1'>Manage your shipping address</p>
+          <hr/>
+          <div className='rounded-lg address-border d-flex align-items-center justify-content-center mb-4'>
+            <p className='text-muted '><Link onClick={()=>this.setState({modalAddress: true})} className='text-decoration-none text-reset '> Add new address</Link></p>
+          </div>
+
+          {address.data.length && address.data.map(item=>{
+            return (
+              <div className='rounded-lg address-border-list p-3 mb-3' >
+                <p style={{fontWeight: 600}} className='mb-2' > {item.recipientsName} </p>
+                <p>{item.address}{','} {item.city} {item.postalCode} </p>
+                <p>{item.recipientsPhone}</p>
+                <Link className='text-decoration-none' style={{color: '#DB3022'}}>Change address</Link>
+              </div>
+            )
+          }) }
+        </ModalBody>
+        <ModalFooter className='border-0'>
+          <Button className='button-cancel' onClick={()=>this.setState({modalShowAddress: false})} >Cancel</Button>{' '}
+          <Button className='button-save' >Save</Button>
+        </ModalFooter>
+      </Modal>
+      
+      <Modal isOpen={this.state.modalAddress} >
+        <Form onSubmit={this.addAddress}>
+          <ModalHeader className='border-0' style={{fontSize: 20, fontWeight: 600}}>Add new address</ModalHeader>
+          <ModalBody>
+            <FormGroup className='row'>
+              <div className='col'>
+                <Label>Save address as (ex:home, office)</Label>
+                <Input type='text' onChange={this.onChangeText} name='nameAddress'/>   
+              </div>
+              <div className='col'>
+                <Label >Recipient's name</Label>
+                <Input type='text' onChange={this.onChangeText} name='recipientsName'/> 
+              </div> 
+            </FormGroup>   
+            <FormGroup className='row'>
+              <div className='col'>
+                <Label>Recipient's phone number</Label>
+                <Input type='text' onChange={this.onChangeText} name='recipientsPhone'/>  
+              </div>    
+              <div className='col'>
+                <Label>Address</Label>  
+                <Input type='text' onChange={this.onChangeText} name='address'/> 
+              </div>
+            </FormGroup>
+            <FormGroup className='row'>
+              <div className='col'>
+                <Label>City or Subdistrict</Label>   
+                <Input type='text' onChange={this.onChangeText} name='city'/>
+              </div>         
+              <div className='col'>
+                <Label>Postal code</Label>    
+                <Input type='text' onChange={this.onChangeText} name='postalCode'/>  
+              </div>        
+            </FormGroup>
+            <FormGroup>
+              <Label check className=''> 
+                <Input type='radio' value='true' name='isPrimary' onChange={this.onChangeText} className='ml-0' />{' '}
+                <span className='ml-4'>Make as primary address</span>
+              </Label> 
+            </FormGroup>
+          </ModalBody>
+          <ModalFooter className='border-0'>
+            <Button className='button-cancel' onClick={()=>this.setState({modalAddress: false})} >Cancel</Button>{' '}
+            <Button className='button-save' >Save</Button>
+          </ModalFooter>
+        </Form>
+      </Modal>
         
       </Container>
       </>
@@ -117,11 +196,13 @@ class Checkout extends Component {
 const mapStateToProps = state => ({
   auth: state.auth,
   checkout: state.checkout,
+  address: state.address,
   payment: state.checkout
 })
 const mapDispatchToProps = {
   getCheckout: checkoutAction.getCheckout,
-  payment: checkoutAction.payment
+  payment: checkoutAction.payment,
+  getAddress: addressAction.getAddress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout)

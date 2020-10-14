@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import productAction from '../redux/actions/page-product'
 import cartAction from '../redux/actions/cart'
@@ -10,7 +10,8 @@ import {
   Row,
   Container,
   Col,
-  Card, CardBody, CardImg, CardTitle, CardSubtitle, CardText
+  Card, CardBody, CardImg, CardTitle, CardSubtitle, CardText,
+  Alert
 } from 'reactstrap'
 
 // importing image
@@ -23,17 +24,22 @@ import NavigationBar from '../components/NavigationBar'
 import NavigationBar2 from '../components/NavigationBar2'
 
 class PageProduct extends React.Component{
+  state = {
+    alert: false
+  }
 
-  addToCart = (id, qty) => {
+  addToCart = (itemsId, quantity) => {
+    console.log('ok')
     const data = {
-      id,
-      qty
+      itemsId,
+      quantity
     }
     if(this.props.auth.isLogin){
       store.dispatch(cartAction.postCart(this.props.auth.token, data))
     } else {
-      return <Redirect to={{pathname: '/login', state: {alert: '/Login First!', color: 'danger'}}} />
+      return this.props.history.push('/login')
     }
+    this.props.getCart(this.props.auth.token)
   }
   componentDidMount() {
     const { id } = this.props.match.params
@@ -42,22 +48,37 @@ class PageProduct extends React.Component{
   componentDidUpdate(){
     if(this.props.cart.successAdd){
       console.log('ok')
-      this.props.history.push('/cart')
+      if(!this.state.alert){
+        this.setState({alert: true})
+      } 
     }
   }
 
   render(){
     console.log(this.props)
+    console.log(this.state)
+    const { data, isLoading, isError } = this.props.product
     return(
-    <>
+    <div>
     {this.props.auth.isLogin ? <NavigationBar/> : <NavigationBar2/>}
       <Container className='mt-4'>
+      {data==undefined && (
+          <div className="spinner-border text-danger text-center" role="status">
+            <span className="sr-only">Loading...</span>
+            <p>Loading...</p>
+          </div>
+        )}
+      {!isLoading && !isError && !(data==undefined) && (
+        <>
+        <Alert color="info" isOpen={this.state.alert} toggle={!this.state.alert}>
+          {this.props.cart.alertMsg}
+        </Alert>
         <div className='menu-category'>
           <p> 
-            <Link className='menu-link' to='/'>Home</Link> {' > '} 
-            <Link  className='menu-link'to='category'>Category</Link> {' > '} 
-            <Link className='menu-link' to='/'> {this.props.product.data.category} </Link> 
-          </p>
+          <Link className='menu-link' to='/'>Home</Link> {' > '} 
+          <Link  className='menu-link'to='category'>Category</Link> {' > '} 
+          <Link className='menu-link' to='/'> {this.props.product.data.category} </Link> 
+        </p>
         </div>
         <Row>
           <div className='col-6'>
@@ -100,9 +121,9 @@ class PageProduct extends React.Component{
             <div className='button'>
               <div className="abu d-flex flex-row mb-4">
                 <Link><button className="signup">Chat</button></Link> 
-                <button className="signup ml-3">Add bag</button>
+                <button className="signup ml-3" onClick={()=>this.addToCart(this.props.product.data.id, this.props.product.quantity)}>Add bag</button>
               </div>
-              <button className="login" type='submit' onClick={this.addToCart(this.props.product.data.id, this.props.product.data.quantity)}>Buy now</button>
+              <button className="login" type='submit'>Buy now</button>
             </div>
               
           </div>
@@ -169,11 +190,24 @@ class PageProduct extends React.Component{
                 </CardBody>
               </Card>
             </Col>
-            </div>
+            </div> 
         </div>
+        </>
+      )}
+      {isLoading&& !isError && data==='undefined' &&(
+          <div className="spinner-border text-danger text-center" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+      )}
+      {!isLoading && !isError && data==='undefined' && (
+          <div className="spinner-border text-danger text-center" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        )}
+        
 
       </Container>
-      </>
+    </div>
     )
   }
 }
@@ -186,7 +220,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getProduct: productAction.getData,
-  postCart: cartAction.postCart
+  postCart: cartAction.postCart,
+  getCart: cartAction.getCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PageProduct)

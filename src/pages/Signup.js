@@ -9,22 +9,24 @@ import auth from '../redux/actions/auth'
 // import image
 import Logo from '../assets/img/logo.svg'
 
-class Login extends Component {
+class Signup extends Component {
   state = {
+    name: '',
     email: '',
     password: '',
     buttonSeller: false,
     buttonCust: true
   }
 
-  login = (e) => {
+  signup = (e) => {
     e.preventDefault()
-    const { email, password } = this.state
+    const { name, email, password } = this.state
     const data = {
+      name,
       email,
       password
     }
-    store.dispatch(auth.login(data))
+    store.dispatch(auth.signup(data))
     // this.props.history.push('/')
   }
 
@@ -48,9 +50,10 @@ class Login extends Component {
 
   componentDidUpdate(){
     console.log(this.props.auth)
-    if(this.props.auth.isLogin){
+    if(this.props.auth.successLogin){
+      console.log('ok')
       this.props.history.push('/')
-    }
+    } 
   }
   
 
@@ -62,7 +65,7 @@ class Login extends Component {
           <div className='header-login text-center'>
             <Link to="/"> <img className='logo mb-3' src={Logo} alt='logo.svg' /></Link>
             <div className='message mb-4'>
-              <span>Please login with your account</span>
+              <span>Register your new account</span>
             </div>
             <div style={{width: 200}} className='btn-group button-wrap mb-4 text-center'>
               <Button color='danger' onClick={()=>this.toggleButton('customer')} active={this.state.buttonCust} className='greyColorButton' style={{width: 120}}>Customer</Button>
@@ -70,16 +73,15 @@ class Login extends Component {
               
             </div>
           </div>
-          <Form onSubmit={this.login}>
-            <Input onChange={this.onChangeText} name='email' type='email' id='email' placeholder='Email'/>
+          <Form onSubmit={this.signup}>
+            <Input onChange={this.onChangeText} name='name' type='name' id='name' placeholder='Name'/>
+            <Input className='mt-3' onChange={this.onChangeText} name='email' type='email' id='email' placeholder='Email'/>
             <Input className='mt-3' onChange={this.onChangeText} name='password' type='password' id='password' placeholder='Password'/>
-            <div className=' text-right mt-3'>
-              <Link to='/' className='red-text'>Forgot Password?</Link>
-            </div>
-            <Button block type='submit' className='mt-3 theme-color rounded-pill'>Login</Button>
+     
+            <Button block type='submit' className='mt-3 theme-color rounded-pill'>Signup</Button>
           </Form>
-          <div className="text-center quest-wrapper mt-3">
-            <span>Don't have any account? </span> <Link to='/signup' className='red-text' >Register</Link>
+          <div class="text-center quest-wrapper mt-3">
+            <span>Have an account? </span> <Link to='/login' className='red-text' >Login</Link>
           </div>
         </div>
       </div>
@@ -90,7 +92,7 @@ class Login extends Component {
 const mapStateToProps = state => ({auth: state.auth})
 
 const mapDispatchToProps = {
-  login: auth.login
+  signup: auth.signup
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)

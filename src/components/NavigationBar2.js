@@ -40,7 +40,7 @@ class NavigationBar2 extends React.Component{
                   <Col className='col-2'><Link to='/bag' className="m-2" > <img src={Cart} alt="cart.svg" /> </Link></Col>
                   <div className="auth col-10 d-flex flex-row">
                     <Link to='/login'><button className="login">Login</button></Link> 
-                    <button className="signup ml-3">Signup</button>
+                    <Link to='/signup'><button className="signup ml-3">Signup</button></Link>
                   </div>
                 </Row>
               </Nav>

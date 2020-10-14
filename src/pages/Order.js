@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 
 import {Link} from 'react-router-dom'
 import {
-  Row, Jumbotron, Card, Container
+  Row, Jumbotron, Card, Container, Nav,
+  NavItem, NavLink
 } from 'reactstrap'
 
 import NavigationBar from '../components/NavigationBar'
@@ -59,11 +60,11 @@ class Profile extends Component {
       <NavigationBar/>
       <Container>
       <Row className='mt-4'>
-        <div className='sidenav col-3'>
+        <div className='sidenav vh-100 col-3 d-flex flex-column'>
           <div className='d-flex flex-row justify-content-end'>
             <img className='rounded-circle' src={data.urlPicture} alt='avatar' style={{width: 70, height: 70}} />
             <div className='mx-3 align-items-center'>
-              <p className='mb-1 mt-2' style={{fontWeight: 600}} className="text-center"> {data.name}</p>
+              <p className='mb-1 mt-2 text-center' style={{fontWeight: 600}}> {data.name}</p>
               <Link className='d-flex flex-row align-items-center text-decoration-none'>
                 <img src={Pencil} alt='pencil' />
                 <p className='mb-0 ml-2 text-muted '>Ubah profil</p>
@@ -91,17 +92,59 @@ class Profile extends Component {
               <p style={{fontWeight: 600}} >My Order</p>
             </div>
           </div>
+
+          <div className='logout-wrapper d-flex justify-content-end'>
+            <Link to='/'><button className="signup ml-3">Logout</button></Link>
+          </div>
         </div>
 
-        <Jumbotron className='col-9 bg-light'>
+        {/* <Jumbotron className='col-9 bg-light'>
           <Card className='p-3'>
-            <p className='heading-text mb-1'>My Profile</p>
-            <p className='subheading-text mb-1'>Manage your profile information</p>
-            <hr/>
+            <div className="card-body">
+              <p className='heading-text mb-2'>My Order</p>
+              <div class="status-order d-flex flex-row">
+                  <div className="all bd-highlight"> All items <hr className="mt-2"/> </div>
+                  <div className="abu pl-5 pr-3 bd-highlight"><Link >Not yet paid</Link> </div>
+                  <div className="abu px-3 bd-highlight"><Link >Packed</Link> </div>
+                  <div className="abu px-3 bd-highlight"><Link >Sent</Link></div>
+                  <div className="px-3 abu bd-highlight"><Link >Completed</Link></div>
+                  <div className="px-3 abu bd-highlight"><Link >Order cancel</Link></div>
+              </div>
+              <hr className="mt-2"/>
+            </div>
             
             
           </Card>
+        </Jumbotron> */}
+
+        <Jumbotron>
+          <Card className="p-3">
+            <div className='card-body'>
+              <p className='heading-text mb-2'>My Order</p>
+              <Nav tabs className='status-order d-flex flex-row'>
+                <NavItem>
+                  <NavLink active>All items</NavLink>
+                </NavItem>
+                <NavItem >
+                  <NavLink >Not yet paid</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink>Packed</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink>Sent</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink>Completed</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink>Cancelled</NavLink>
+                </NavItem>
+              </Nav>
+            </div>
+          </Card>
         </Jumbotron>
+        
       </Row>
       </Container>
       </>

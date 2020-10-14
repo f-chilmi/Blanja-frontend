@@ -23,6 +23,7 @@ import profileAction from '../redux/actions/profile'
 class Address extends Component {
   state = {
     modal: false,
+    data: '',
     nameAddress: '',
     recipientsName: '',
     address: '',
@@ -34,6 +35,28 @@ class Address extends Component {
 
   componentDidMount() {
     this.props.getAddress(this.props.auth.token)
+  }
+
+  componentDidUpdate(){
+    if(Object.keys(this.props.address.data).length>0){
+      const { data } = this.props.address
+      if(this.state.data==''){
+        this.setState({
+          data: data
+          // name: data.nameAddress,
+          // email: data.recipientsName,
+          // phone: data.address,
+          // gender: data.recipientsPhone,
+          // urlPicture: data.city,
+          // postalCode: data.postalCode,
+          // isPrimary: data.isPrimary
+        })
+      } else {
+        console.log('done setState')
+      }
+    } else {
+      console.log('belum siap')
+    }
   }
 
   onChangeText = (e) => {
@@ -67,14 +90,14 @@ class Address extends Component {
   
   render() {
     console.log(this.state)
-    // console.log(this.props.auth.token)
+    console.log(this.props)
     const { data } = this.props.address
     return (
       <>
       <NavigationBar/>
       <Container>
       <Row className='mt-4'>
-        <div className='sidenav col-3'>
+        <div className='sidenav vh-100 col-3 d-flex flex-column'>
           <div className='d-flex flex-row justify-content-end'>
             <img className='rounded-circle' src={this.props.profile.data.urlPicture}  alt='avatar' style={{width: 70, height: 70}} />
             <div className='mx-3 align-items-center'>
@@ -105,6 +128,10 @@ class Address extends Component {
               </div>
               <Link to='/order' className='text-reset text-decoration-none'> <p className='text-muted '>My Order</p></Link>
             </div>
+          </div>
+
+          <div className='logout-wrapper d-flex justify-content-end'>
+            <Link to='/'><button className="signup ml-3">Logout</button></Link>
           </div>
         </div>
 
