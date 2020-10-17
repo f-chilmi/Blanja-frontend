@@ -85,7 +85,7 @@ class PageProduct extends React.Component{
         <Row>
           <div className='col-6'>
             <div className='row justify-content-around'>
-              <img className='mb-3 mr-1 col-5' src={`${REACT_APP_BACKEND_URL}:8080/${this.props.product.data.picture1}`} style={{width: 263, height: 300}} alt='product.png' />
+              <img className='mb-3 mr-1 col-5' src={`${REACT_APP_BACKEND_URL}/${this.props.product.data.picture1}`} style={{width: 263, height: 300}} alt='product.png' />
               <img className='mb-3 mr-1 col-5' style={{width: 263, height: 329}} alt='product.png' />
             </div>
             <div className='row justify-content-around'>

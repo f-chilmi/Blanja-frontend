@@ -42,7 +42,7 @@ class NavigationBar extends React.Component{
                   <Col><Link to='' className="m-2" to="#"> <img src={Bell} alt="bell.svg" /> </Link></Col>
                   <Col><Link to='' className="m-2" to="#"> <img src={Mail} alt="mail.svg" /> </Link></Col>
                   
-                  <Col><Link to='/profile' className="m-2" > <img src={this.props.profile.data.urlPicture} alt="ava" style={{width: 70, height: 70}} /></Link></Col>
+                  <Col><Link to='/profile' className="m-2" > <img src={`${REACT_APP_BACKEND_URL}/${this.props.profile.data.urlPicture}`} alt="ava" style={{width: 70, height: 70}} /></Link></Col>
                 </Row>
               </Nav>
             </Collapse>

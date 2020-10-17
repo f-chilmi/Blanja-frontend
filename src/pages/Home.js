@@ -116,7 +116,7 @@ class Home extends React.Component{
             {data.length!==0 && data.map(item=>(
               <Col className="card-deck col-sm-12 col-md-6 col-lg-3 col-xl-3" >
                 <Card className="shadow border-0 mb-3">
-                  <CardImg src={`${REACT_APP_BACKEND_URL}:8080/${item.picture1}`} alt="suit.png" />
+                  <CardImg src={`${REACT_APP_BACKEND_URL}/${item.picture1}`} alt="suit.png" />
                   <CardBody>
                     <Link to={`/page-product/${item.id}`} className='text-decoration-none'>
                       <CardTitle className="cardTitle"> {item.name} </CardTitle>
@@ -144,7 +144,7 @@ class Home extends React.Component{
             {data.length!==0 && dataPopular.map(item=>(
               <Col className="card-deck col-sm-12 col-md-6 col-lg-3 col-xl-3" >
                 <Card className="shadow border-0 mb-3">
-                  <CardImg src={`${REACT_APP_BACKEND_URL}:8080/${item.picture1}`} alt="suit.png" />
+                  <CardImg src={`${REACT_APP_BACKEND_URL}/${item.picture1}`} alt="suit.png" />
                   <CardBody>
                     <Link to={`/page-product/${item.id}`} className='text-decoration-none'>
                       <CardTitle className="cardTitle"> {item.name} </CardTitle>
