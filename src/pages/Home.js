@@ -68,21 +68,21 @@ class Home extends React.Component{
 
       <Row className="mb-4 mt-5 d-flex justify-content-between divRow">
         <Col className="col-sm-1 col-md-1 " >
-          <img src={`${REACT_APP_BACKEND_URL}:8080/${image1}`} alt="image.png" className="rounded-lg"/>
+          <img src={image1} alt="image.png" className="rounded-lg"/>
         </Col>
         <Col className="col-sm-5 col-md-5 d-flex align-content-center flex-wrap justify-content-center divImg" >
-          <img src={`${REACT_APP_BACKEND_URL}:8080/${image2}`} alt="image.png" className="rounded-lg" />
+          <img src={image2} alt="image.png" className="rounded-lg" />
           <p className="pAbsolute">Trends in 2020</p>
         </Col>
         <Col className="col-sm-5 col-md-5 d-flex align-content-center flex-wrap justify-content-center divImg" >
-          <img src={`${REACT_APP_BACKEND_URL}:8080/${image3}`} alt="image.png" className="rounded-lg" />
+          <img src={image3} alt="image.png" className="rounded-lg" />
           <p className="pAbsolute">Black edition</p>
         </Col>
         <Col className="col-sm-1 col-md-1" >
-          <img src={`${REACT_APP_BACKEND_URL}:8080/${image4}`} alt="image.png" className="rounded-lg" />
+          <img src={image4} alt="image.png" className="rounded-lg" />
         </Col>
-        <div className="rounded-circle d-flex align-content-center flex-wrap justify-content-center bg-white nextCarousel my-auto"><a href='#'><img src={`${REACT_APP_BACKEND_URL}:8080/${Next}`} alt="next-icon.png"/></a></div>
-        <div className="rounded-circle d-flex align-content-center flex-wrap justify-content-center bg-white prevCarousel my-auto"><a href='#'><img src={`${REACT_APP_BACKEND_URL}:8080/${Next}`} alt="next-icon.png"/></a></div>
+        <div className="rounded-circle d-flex align-content-center flex-wrap justify-content-center bg-white nextCarousel my-auto"><a href='#'><img src={Next} alt="next-icon.png"/></a></div>
+        <div className="rounded-circle d-flex align-content-center flex-wrap justify-content-center bg-white prevCarousel my-auto"><a href='#'><img src={Next} alt="next-icon.png"/></a></div>
       </Row>
 
 
@@ -93,12 +93,12 @@ class Home extends React.Component{
       {this.props.home.successGetCategory && this.props.home.categoryList.map(item => (
         <Col className="col-md" >
           <div className="borderImage1 rounded-lg d-flex flex-column align-content-center flex-wrap justify-content-center" style={{backgroundColor: `${item.colorBackground}`}}>
-            <img src={`${REACT_APP_BACKEND_URL}:8080/${item.image}`} alt="t-shirt.png" style={{width: 120, height: 120}}/>
+            <img src={`${REACT_APP_BACKEND_URL}/${item.image}`} alt="t-shirt.png" style={{width: 120, height: 120}}/>
             <p className='text-center text-white' style={{fontWeight: 600, fontSize: 24}}>{item.category}</p>
           </div>
         </Col>
       ))}
-        <div className="rounded-circle d-flex align-content-center flex-wrap justify-content-center bg-white next-icon my-auto"><a href='#'><img src={`${REACT_APP_BACKEND_URL}:8080/${Next}`} alt="next-icon.png"/></a></div>
+        <div className="rounded-circle d-flex align-content-center flex-wrap justify-content-center bg-white next-icon my-auto"><a href='#'><img src={Next} alt="next-icon.png"/></a></div>
       </Row>
 
       {data==undefined && (
@@ -124,11 +124,11 @@ class Home extends React.Component{
                     <CardSubtitle className="cardPrice">Rp {item.price}</CardSubtitle>
                     <CardText className="cardStore mb-0">Zalora Cloth</CardText>
                     <div className="">
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
                       <p className="greyText d-inline"> {item.rating}</p>
                     </div>
                   </CardBody>
@@ -152,11 +152,11 @@ class Home extends React.Component{
                     <CardSubtitle className="cardPrice">Rp {item.price}</CardSubtitle>
                     <CardText className="cardStore mb-0">Zalora Cloth</CardText>
                     <div className="">
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
+                      <img src={Star} alt="star.png"/>
                       <p className="greyText d-inline"> {item.rating}</p>
                     </div>
                   </CardBody>

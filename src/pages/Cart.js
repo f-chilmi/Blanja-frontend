@@ -119,7 +119,7 @@ class Cart extends Component {
                         <input type="checkbox" value="item.id" name="id"/>
                       </div>
                       <div className="col-2 p-0">
-                        <img alt="product" src={`${REACT_APP_BACKEND_URL}:8080/${item.picture1}`} className='image-product' />
+                        <img alt="product" src={`${REACT_APP_BACKEND_URL}/${item.picture1}`} className='image-product' />
                       </div>
                       <div className="col-3 nama-toko align-items-center ml-3">
                         <p className="nama-barang mb-0"> {item.name}</p>
@@ -127,11 +127,11 @@ class Cart extends Component {
                       </div>
                       <div className="col-2 ikon-plus-minus d-flex flex-row mr-4">
                         <button className="minus" name="quantity"  onClick={()=>this.DecreaseItem(index)}>
-                          <img src={`${REACT_APP_BACKEND_URL}:8080/${Rectangle}`} alt=""/>
+                          <img src={Rectangle} alt=""/>
                         </button>
                         <p className="align-content-center"> {item.quantity} </p>
                         <button className="plus" name="quantity" onClick={()=>this.IncreaseItem(index)}>
-                          <img src={`${REACT_APP_BACKEND_URL}:8080/${Shape}`} alt=""/>
+                          <img src={Shape} alt=""/>
                         </button>
                       </div>
                       <p className="col-2 harga ml-auto mr-3"> Rp {item.total} </p>                  

@@ -62,7 +62,7 @@ class Login extends Component {
       <div className='vh-100 d-flex justify-content-center align-items-center'>
         <div style={{width: 400}}>
           <div className='header-login text-center'>
-            <Link to="/"> <img className='logo mb-3' src={`${REACT_APP_BACKEND_URL}:8080/${Logo}`} alt='logo.svg' /></Link>
+            <Link to="/"> <img className='logo mb-3' src={Logo} alt='logo.svg' /></Link>
             <div className='message mb-4'>
               <span>Please login with your account</span>
             </div>

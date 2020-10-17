@@ -97,11 +97,11 @@ class PageProduct extends React.Component{
             <p className="nama-produk">{this.props.product.data.name}</p>
             <p className="merk">Nike</p>
             <p className="star">
-              <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star" />
-              <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star" /> 
-              <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star" /> 
-              <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star" /> 
-              <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star" /> 
+              <img src= {Star}  alt="star" />
+              <img src= {Star}  alt="star" /> 
+              <img src= {Star}  alt="star" /> 
+              <img src= {Star}  alt="star" /> 
+              <img src= {Star}  alt="star" /> 
               (10)
             </p>
             <p className="price-text mb-0">Price</p>
@@ -111,11 +111,11 @@ class PageProduct extends React.Component{
               <p>Jumlah</p>
               <div className="add-min-size d-flex flex-row" >
                   <button className="min" onClick={()=>{store.dispatch(productAction.decreaseCount)}}>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Rectangle}`} alt="minus" />
+                      <img src={Rectangle} alt="minus" />
                   </button>
                   <p>1</p>
                   <button className="plus" onClick={()=>{store.dispatch(productAction.increaseCount)}}>
-                      <img src={`${REACT_APP_BACKEND_URL}:8080/${Shape}`} alt="plus" />
+                      <img src={Shape} alt="plus" />
                   </button>
               </div>
             </div>
@@ -142,20 +142,20 @@ class PageProduct extends React.Component{
                 <div class="row-1">
                     <p class="big mb-0">{!this.props.product.data['AVG(rating)'] ? "0" :this.props.product.data['AVG(rating)']}<span class="small-grey">/10 </span> </p>
                     <p className="star">
-                      <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star" />
-                      <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star" /> 
-                      <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star" /> 
-                      <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`} alt="star" /> 
-                      <img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star" /> 
+                      <img src= {Star}  alt="star" />
+                      <img src= {Star}  alt="star" /> 
+                      <img src= {Star}  alt="star" /> 
+                      <img src= {Star} alt="star" /> 
+                      <img src= {Star}  alt="star" /> 
                       (10)
                     </p>
                 </div>
                 <div class="row-2">
-                    <p class="mb-0"><img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}   alt="star" /> 5</p>
-                    <p  class="mb-0"><img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`}   alt="star" /> 4</p>
-                    <p  class="mb-0"><img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`}   alt="star" /> 3</p>
-                    <p class="mb-0"><img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`}   alt="star" /> 2</p>
-                    <p class="mb-0"><img src= {`${REACT_APP_BACKEND_URL}:8080/${Star}`}   alt="star" /> 1</p>
+                    <p class="mb-0"><img src= {Star}   alt="star" /> 5</p>
+                    <p  class="mb-0"><img src={Star}   alt="star" /> 4</p>
+                    <p  class="mb-0"><img src={Star}   alt="star" /> 3</p>
+                    <p class="mb-0"><img src={Star}   alt="star" /> 2</p>
+                    <p class="mb-0"><img src= {Star}   alt="star" /> 1</p>
                 </div>
                 <div class="row-3 ml-4">
                     <hr/>
@@ -182,11 +182,11 @@ class PageProduct extends React.Component{
                   <CardSubtitle className="cardPrice">Rp item.name</CardSubtitle>
                   <CardText className="cardStore mb-0">Zalora Cloth</CardText>
                   <div className="">
-                    <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star.png"/>
-                    <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star.png"/>
-                    <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star.png"/>
-                    <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star.png"/>
-                    <img src={`${REACT_APP_BACKEND_URL}:8080/${Star}`}  alt="star.png"/>
+                    <img src={Star}  alt="star.png"/>
+                    <img src={Star}  alt="star.png"/>
+                    <img src={Star}  alt="star.png"/>
+                    <img src={Star}  alt="star.png"/>
+                    <img src={Star}  alt="star.png"/>
                     <p className="greyText d-inline"> item.name</p>
                   </div>
                 </CardBody>

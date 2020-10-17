@@ -64,11 +64,11 @@ class Profile extends Component {
       <Row className='mt-4'>
         <div className='sidenav vh-100 col-3 d-flex flex-column'>
           <div className='d-flex flex-row justify-content-end'>
-            <img className='rounded-circle' src={`${REACT_APP_BACKEND_URL}:8080/${data.urlPicture}`} alt='avatar' style={{width: 70, height: 70}} />
+            <img className='rounded-circle' src={`${REACT_APP_BACKEND_URL}/${data.urlPicture}`} alt='avatar' style={{width: 70, height: 70}} />
             <div className='mx-3 align-items-center'>
               <p className='mb-1 mt-2 text-center' style={{fontWeight: 600}}> {data.name}</p>
               <Link className='d-flex flex-row align-items-center text-decoration-none'>
-                <img src={`${REACT_APP_BACKEND_URL}:8080/${Pencil}`} alt='pencil' />
+                <img src={Pencil} alt='pencil' />
                 <p className='mb-0 ml-2 text-muted '>Ubah profil</p>
               </Link>
             </div>
@@ -77,19 +77,19 @@ class Profile extends Component {
           <div className='menu-wrapper'>
             <div className='d-flex flex-row'>
               <div class="user mr-3">
-                <img src={`${REACT_APP_BACKEND_URL}:8080/${UserLogo}`} alt='userLogo' />
+                <img src={UserLogo} alt='userLogo' />
               </div>
               <Link to='/profile' className='text-reset text-decoration-none' > <p className='text-muted '>My Profile</p></Link>
             </div>
             <div className='d-flex flex-row'>
               <div class="map mr-3">
-                <img src={`${REACT_APP_BACKEND_URL}:8080/${Shipping}`}  alt='shipping'/>
+                <img src={Shipping} alt='shipping'/>
               </div>
               <Link to='/address' className='text-reset text-decoration-none' > <p className='text-muted '>Shipping Address</p></Link>
             </div>
             <div className='d-flex flex-row'>
               <div class="clipboard mr-3">
-                <img src={`${REACT_APP_BACKEND_URL}:8080/${Clipboard}`} alt='clipboard' />
+                <img src={Clipboard} alt='clipboard' />
               </div>
               <p style={{fontWeight: 600}} >My Order</p>
             </div>
