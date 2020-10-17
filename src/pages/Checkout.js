@@ -14,6 +14,8 @@ import NavigationBar from '../components/NavigationBar'
 import checkoutAction from '../redux/actions/checkout'
 import addressAction from '../redux/actions/address'
 
+const {REACT_APP_BACKEND_URL} = process.env
+
 class Checkout extends Component {
   state = {
     modalOpen: false,
@@ -60,7 +62,7 @@ class Checkout extends Component {
                 <Card className=" card-2 w-100 mb-3 shadow">
                   <div className="card-body second">
                     <div className="caption d-flex flex-row align-items-center ">
-                      <img className="ml-4" alt=""/>
+                      <img src={`${REACT_APP_BACKEND_URL}:8080/${item.picture1}`} className="ml-4" alt=""/>
                       <div className="nama-toko align-items-center ml-3">
                         <p className="nama-barang mb-0 font-weight-bold"> {item.name}</p>
                         <p className="toko mb-1">Zalora Cloth</p>

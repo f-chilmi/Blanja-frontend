@@ -20,6 +20,8 @@ import store from '../redux/store'
 import addressAction from '../redux/actions/address'
 import profileAction from '../redux/actions/profile'
 
+const {REACT_APP_BACKEND_URL} = process.env
+
 class Address extends Component {
   state = {
     modal: false,
@@ -99,11 +101,11 @@ class Address extends Component {
       <Row className='mt-4'>
         <div className='sidenav vh-100 col-3 d-flex flex-column'>
           <div className='d-flex flex-row justify-content-end'>
-            <img className='rounded-circle' src={this.props.profile.data.urlPicture}  alt='avatar' style={{width: 70, height: 70}} />
+            <img className='rounded-circle' src={`${REACT_APP_BACKEND_URL}:8080/${this.props.profile.data.urlPicture}`}  alt='avatar' style={{width: 70, height: 70}} />
             <div className='mx-3 align-items-center'>
               <p className='mb-1 mt-2' style={{fontWeight: 600}} className="text-center"> {this.props.profile.data.name}</p>
               <Link className='d-flex flex-row align-items-center text-decoration-none'>
-                <img src={Pencil} alt='pencil' />
+                <img src={`${REACT_APP_BACKEND_URL}:8080/${Pencil}`} alt='pencil' />
                 <p className='mb-0 ml-2 text-muted '>Ubah profil</p>
               </Link>
             </div>
@@ -112,19 +114,19 @@ class Address extends Component {
           <div className='menu-wrapper'>
             <div className='d-flex flex-row'>
               <div class="user mr-3">
-                <img src={UserLogo} alt='userLogo' />
+                <img src={`${REACT_APP_BACKEND_URL}:8080/${UserLogo}`} alt='userLogo' />
               </div>
                 <Link to='/profile' className='text-reset text-decoration-none'> <p className='text-muted '>My Profile</p></Link>
             </div>
             <div className='d-flex flex-row'>
               <div class="map mr-3">
-                <img src={Shipping}  alt='shipping'/>
+                <img src={`${REACT_APP_BACKEND_URL}:8080/${Shipping}`}  alt='shipping'/>
               </div>
               <p style={{fontWeight: 600}} >Shipping Address</p>
             </div>
             <div className='d-flex flex-row'>
               <div class="clipboard mr-3">
-                <img src={Clipboard} alt='clipboard' />
+                <img src={`${REACT_APP_BACKEND_URL}:8080/${Clipboard}`} alt='clipboard' />
               </div>
               <Link to='/order' className='text-reset text-decoration-none'> <p className='text-muted '>My Order</p></Link>
             </div>

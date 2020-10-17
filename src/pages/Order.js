@@ -18,6 +18,8 @@ import store from '../redux/store'
 
 import profileAction from '../redux/actions/profile'
 
+const {REACT_APP_BACKEND_URL} = process.env
+
 class Profile extends Component {
   state = {
     radioMale: true,
@@ -62,11 +64,11 @@ class Profile extends Component {
       <Row className='mt-4'>
         <div className='sidenav vh-100 col-3 d-flex flex-column'>
           <div className='d-flex flex-row justify-content-end'>
-            <img className='rounded-circle' src={data.urlPicture} alt='avatar' style={{width: 70, height: 70}} />
+            <img className='rounded-circle' src={`${REACT_APP_BACKEND_URL}:8080/${data.urlPicture}`} alt='avatar' style={{width: 70, height: 70}} />
             <div className='mx-3 align-items-center'>
               <p className='mb-1 mt-2 text-center' style={{fontWeight: 600}}> {data.name}</p>
               <Link className='d-flex flex-row align-items-center text-decoration-none'>
-                <img src={Pencil} alt='pencil' />
+                <img src={`${REACT_APP_BACKEND_URL}:8080/${Pencil}`} alt='pencil' />
                 <p className='mb-0 ml-2 text-muted '>Ubah profil</p>
               </Link>
             </div>
@@ -75,19 +77,19 @@ class Profile extends Component {
           <div className='menu-wrapper'>
             <div className='d-flex flex-row'>
               <div class="user mr-3">
-                <img src={UserLogo} alt='userLogo' />
+                <img src={`${REACT_APP_BACKEND_URL}:8080/${UserLogo}`} alt='userLogo' />
               </div>
               <Link to='/profile' className='text-reset text-decoration-none' > <p className='text-muted '>My Profile</p></Link>
             </div>
             <div className='d-flex flex-row'>
               <div class="map mr-3">
-                <img src={Shipping}  alt='shipping'/>
+                <img src={`${REACT_APP_BACKEND_URL}:8080/${Shipping}`}  alt='shipping'/>
               </div>
               <Link to='/address' className='text-reset text-decoration-none' > <p className='text-muted '>Shipping Address</p></Link>
             </div>
             <div className='d-flex flex-row'>
               <div class="clipboard mr-3">
-                <img src={Clipboard} alt='clipboard' />
+                <img src={`${REACT_APP_BACKEND_URL}:8080/${Clipboard}`} alt='clipboard' />
               </div>
               <p style={{fontWeight: 600}} >My Order</p>
             </div>
@@ -97,25 +99,6 @@ class Profile extends Component {
             <Link to='/'><button className="signup ml-3">Logout</button></Link>
           </div>
         </div>
-
-        {/* <Jumbotron className='col-9 bg-light'>
-          <Card className='p-3'>
-            <div className="card-body">
-              <p className='heading-text mb-2'>My Order</p>
-              <div class="status-order d-flex flex-row">
-                  <div className="all bd-highlight"> All items <hr className="mt-2"/> </div>
-                  <div className="abu pl-5 pr-3 bd-highlight"><Link >Not yet paid</Link> </div>
-                  <div className="abu px-3 bd-highlight"><Link >Packed</Link> </div>
-                  <div className="abu px-3 bd-highlight"><Link >Sent</Link></div>
-                  <div className="px-3 abu bd-highlight"><Link >Completed</Link></div>
-                  <div className="px-3 abu bd-highlight"><Link >Order cancel</Link></div>
-              </div>
-              <hr className="mt-2"/>
-            </div>
-            
-            
-          </Card>
-        </Jumbotron> */}
 
         <Jumbotron>
           <Card className="p-3">
